@@ -1,0 +1,47 @@
+
+
+<odoo>
+    <data>
+        <record id="hms_customers_tree_view" model="ir.ui.view">
+            <field name="name">Hospital Customers</field>
+            <field name="model">res.partner</field>
+            <!-- Use inherit_id to inherit already existing view  -->
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+<!-- ➢ Use xpath tag to define the position of the field/group/page… you need to modify  -->
+<!-- ➢ Available positions are [before, after, replace, inside, attributes] -->
+                <field name="email" position="after">
+                    <field name="website"/>  <!--➢ Show website field in the list view for customers -->
+                </field>
+
+            </field>
+        </record>   
+    
+        <record id = 'hms_customers_form_view' model = 'ir.ui.view'>
+            <field name="name">HMS Customers Inherit View View</field>
+            <field name="model">res.partner</field>
+            <!-- Use inherit_id to inherit already existing view  -->
+            <field name="inherit_id" ref="base.view_partner_form"></field>
+            <field name="arch" type="xml">
+
+<!-- ➢ Use xpath tag to define the position of the field/group/page… you need to modify  -->
+<!-- ➢ Available positions are [before, after, replace, inside, attributes] -->
+
+<!-- ➢ Using inside position and xpath -->
+
+<!-- rest of so2al :  show related patient id field inside  Misc group within sales and purchase tab -->
+                <xpath expr="//group[@name='misc']" position ='inside'>
+<!-- han-target el group el esmo misc w ay haga coming next line will be POSITIONED INSIDE IT -->
+                    <field name="related_patient_id"/>
+                </xpath>
+    <!--  Using attributes position and xpath -->
+    <!-- Make the Tax ID field mandatory for CRM Customers -->
+
+                <field name="vat" position="attributes">
+                    <attribute name="required">1</attribute> <!-- 1 means MUST -->
+                </field>
+
+            </field>
+        </record>
+    </data>
+</odoo>

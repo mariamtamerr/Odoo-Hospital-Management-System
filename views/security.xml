@@ -1,0 +1,28 @@
+<!-- 
+
+➢ Continue with our previously created module “hms” 
+➢Create two new user groups (user , manager)
+ ➢The user group has the following access rights: 
+ ➢Can create/read/update his own patients records
+  ➢Can read only departments
+   ➢Can read only doctors 
+   ➢Can’t view doctor fields in patients’ form view 
+   ➢Can’t view doctors’ menu item -->
+<!-- .......................... -->
+<!-- 
+
+<record id='hms_user' model='ir.module.category'>
+        <field name='name' >Hospital Category</field>
+</record>
+
+
+<!- user -->
+<!-- <record id='hms_user' model='ir.module.category'>
+        <field name='name' >Hospital Category</field>
+</record> -->
+
+<!-- Manager -->
+<!-- <record id='hms_user' model='ir.module.category'>
+        <field name='name' >Hospital Category</field>
+</record>  -->
+

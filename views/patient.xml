@@ -1,0 +1,150 @@
+<odoo>
+<data>
+
+
+
+
+<!-- tree view -->
+
+
+<record id='view_hospital_patient_tree' model='ir.ui.view'>
+
+<field name='name'>hospital patient tree</field>
+<field name='model'>hospital.patient</field>
+
+<field name='arch' type='xml'>
+
+        <tree>
+                <field name='name'/>
+                <field name='age'/>
+                <field name='gender'/>
+                <field name='address'/>
+                <field name='phone'/>
+                <field name='history'></field>
+                <field name='cr_ratio'></field>
+                <field name='blood_type'></field>
+                <field name='states'></field>
+                <field name='pcr'></field>
+                <field name='blood_type'/>
+                <field name='pcr'/>
+                <field name='image'/>
+                <field name='department_id'></field>
+                <field name='capacity'></field>
+                <field name='doctor_id'></field>
+                
+        </tree>
+
+
+
+        </field>
+
+        </record>
+
+
+
+
+<!-- form view  -->
+
+<record id='view_hospital_patient_form' model='ir.ui.view'>
+    <field name='name'>hospital.patient.form</field>
+    <field name='model'>hospital.patient</field>
+    <field name='arch' type='xml'>
+        <form>
+         <header>
+             <field name="states" widget="statusbar"  nolabel="1" options="{'clickable':'1'}"/>
+         </header>
+            <sheet>
+                <notebook> 
+ <!-- !Page direct ancestor must be notebook -->
+
+ <!-- page for patients data  -->
+<page string='Hospital Patients Data'>   
+            <!-- <group string='Data'> -->
+
+            <group>
+            <field name='name'/>
+            <field name='age'/>
+            <field name='gender'/>
+            <field name='address'/>
+            <field name='phone'/>
+            <field name='birth_date'/>
+            <field name='email'/>
+            </group>
+
+
+            <!-- <group>
+            <field name='email'/>
+            <field name='blood_type'/>
+            <field name='pcr'/>
+            <field name='image'/>
+            <field name='department_id'></field>
+                <field name='capacity'></field>
+                <field name='doctor_id'></field>
+            </group>
+
+
+            </group> -->
+</page>
+<!-- </notebook> -->
+
+<!-- page for field attributes -->
+
+<page string="Medical Information">
+    <group string="Data">
+        <field name='history' attrs="{'invisible':[('age','&lt;',50)]}"></field>
+        <field name='pcr'></field>
+        <field name='cr_ratio' attrs="{'required':[('pcr','=',True)]}"></field>
+        <field name='blood_type'></field>
+        <field name='image'></field>
+    </group>
+</page>
+
+<!-- Page for department -->
+
+ <page string="Department Information">
+    <group string="Data">
+        <field name='department_id' domain="[('is_opened','=',True)]"></field>
+        <field name='doctor_id' attrs="{'readonly':[('department_id','=',False)]}"></field>
+        <field name='capacity'></field>
+    </group>
+</page>
+
+<!-- page for relations -->
+
+<!-- <notebook>
+<page string='Relations '>
+            <group  string='department_patient_relation'>
+            <field name='department_id'/>
+            </group>
+                        </page> -->
+
+<page string="Log Information">
+    <group string="Data">
+        <field name='states_logs'>
+            <tree>
+                <field name="create_uid"/>
+                <field name="description"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </group>
+</page>
+
+                </notebook>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+
+
+<!-- first window menu fl awll khalesss  -->
+
+<record id='patient_action' model="ir.actions.act_window">
+    <field name='name'>patient_data</field>
+    <field name='res_model'>hospital.patient</field>
+</record>
+<menuitem id="root" name="Hospital" />
+<menuitem id='patient_data' name='Patients' parent="root" action='patient_action' sequence="1"/>
+</data>
+</odoo>

@@ -1,0 +1,80 @@
+
+
+
+<odoo>
+<data>
+
+
+
+
+<!-- tree view -->
+
+
+<record id='view_hospital_department' model='ir.ui.view'>
+
+        <field name='name'>Hospital Department Tree</field>
+        <field name='model'>hospital.department</field>
+
+        <field name='arch' type='xml'>
+
+        <tree>
+                <field name='department_name'/>
+                <field name='capacity'/>
+                <field name='is_opened'/>
+                <field name='patients'></field>
+        </tree>
+        </field>
+</record>
+
+
+
+
+<!-- form view  -->
+
+
+<record id='view_hospital_department_form' model='ir.ui.view'>
+
+<field name='name'>Hospital Department Form</field>
+<field name='model'>hospital.department</field>
+
+<field name='arch' type='xml'>
+
+<form>
+<sheet>
+<notebook> 
+ <!-- !Page direct ancestor must be notebook -->
+
+ <!-- page for departments data  -->
+<page string='Hospital departments Data'>   
+          
+
+            <group>
+             <field name='department_name'/>
+                <field name='capacity'/>
+                <field name='is_opened'/>
+            </group>
+</page>
+
+<page string="Patient Information">
+             <group>
+                <field name='patients'></field>
+            </group>
+</page>
+</notebook>
+</sheet>
+</form>
+</field>
+</record>
+
+
+
+<!-- first window menu fl awll khalesss  -->
+
+<record id='department_action' model="ir.actions.act_window">
+    <field name='name'>department_data</field>
+    <field name='res_model'>hospital.department</field>
+</record>
+<menuitem id="root" name="Hospital" />
+<menuitem id='department_data' name='department' parent="root" action='department_action' sequence="1"/>
+</data>
+</odoo>
